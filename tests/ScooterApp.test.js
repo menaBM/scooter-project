@@ -30,8 +30,8 @@ describe("testing the user class interactions with the scooter app class", ()=>{
         expect(registeredUsers[user.username].loggedIn).toEqual(true)
     })
     test("a user with an incorrect username or password cannot log in",()=>{
-        expect(app.logIn(user.username, "abcdefg")).toThrow("Username or password is incorrect.")
-        expect(app.logIn("not_a_user", "abcdefghijk")).toThrow("Username or password is incorrect.")
+        expect(()=>{app.logIn(user.username, "abcdefg")}).toThrow("Username or password is incorrect.")
+        expect(() =>{app.logIn("not_a_user", "abcdefghijk")}).toThrow("Username or password is incorrect.")
     })
 })
 describe("testing the scooter class interactions with the scooter app class",()=>{
@@ -52,6 +52,6 @@ describe("testing the scooter class interactions with the scooter app class",()=
         expect(log).toHaveBeenCalledWith("scooter removed succesfully")
     })
     test("removing a scooter that is not currently in the list",()=>{
-        expect(app.removeScooter(scooter)).toThrow("this scooter is not in the list")
+        expect(() =>{app.removeScooter(scooter)}).toThrow("this scooter is not in the list")
     })
 })
