@@ -50,6 +50,10 @@ describe("testing the scooter class interactions with the scooter app class",()=
         expect(scooter.station).toBe("city")
         expect(app.stations["city"][scooter.serial]).toEqual(scooter)
     })
+    test("cannot add a new scooter without providing location and scooter", ()=>{
+        expect(()=> {app.addScooter(scooter)}).toThrow("not enough information provided.")
+        expect(()=> {app.addScooter()}).toThrow("not enough information provided.")
+    })
 // remove scooter
     test("removing a scooter", ()=>{
         app.addScooter(scooter, "city")
