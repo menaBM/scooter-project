@@ -15,14 +15,14 @@ describe("testing the user class interactions with the scooter app class", ()=>{
         expect(app.registeredUsers.keys()).toContain(user.username)
     })
     test("a user cannot register if they are already registered", ()=>{
-        jest.spyOn(console.log)
+        let log = jest.spyOn(console,"log")
         app.register(user)
-        expect(console.log).toHaveBeenCalledWith("already registered")
+        expect(log).toHaveBeenCalledWith("already registered")
     })
     test("a user must be over 17 to register", ()=>{
-        jest.spyOn(console.log)
+        let log = jest.spyOn(console,"log")
         app.register(new User("lawrence", "aProperlyHashedPassword", 14))
-        expect(console.log).toHaveBeenCalledWith("too young to register!")
+        expect(log).toHaveBeenCalledWith("too young to register!")
     })
 // log in
     test("a user can log in", ()=>{
@@ -47,9 +47,9 @@ describe("testing the scooter class interactions with the scooter app class",()=
     })
 // remove scooter
     test("removing a scooter", ()=>{
-        jest.spyOn(console.log)
+        let log = jest.spyOn(console,"log")
         app.removeScooter(scooter)
-        expect(console.log).toHaveBeenCalledWith("scooter removed succesfully")
+        expect(log).toHaveBeenCalledWith("scooter removed succesfully")
     })
     test("removing a scooter that is not currently in the list",()=>{
         expect(app.removeScooter(scooter)).toThrow("this scooter is not in the list")
