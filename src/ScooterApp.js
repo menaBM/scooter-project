@@ -2,9 +2,11 @@ const User = require('./User')
 const Scooter = require('./Scooter')
 
 class ScooterApp {
+  static scooterSessions = []
   constructor(){
     this.stations = {}
     this.registeredUsers = {}
+    ScooterApp.scooterSessions.push(this)
   }
   register(user){
     if (Object.keys(this.registeredUsers).includes(user.username)){
@@ -32,6 +34,9 @@ class ScooterApp {
     throw new Error("Username or password is incorrect.")
   }
   addScooter(scooter, location){
+    if (scooter === undefined | location === undefined){
+      throw new Error("not enough information provided.")
+    }
     scooter.station = location
     if (!Object.keys(this.stations).includes("location")){
       this.stations[location] = {}
